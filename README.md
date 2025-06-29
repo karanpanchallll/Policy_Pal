@@ -60,7 +60,7 @@ risk_score = base + age_factor + income_factor + smoker_penalty + driving_penalt
 
 ---
 
-### 🌐 Step 3: Live Policy Search via SerpAPI  
+### 🌐 Step 3: Live Policy Search via Serp  
 We generate a dynamic query from the user profile and pass it to **Serp**, which returns:
 
 - Live policy listings  
