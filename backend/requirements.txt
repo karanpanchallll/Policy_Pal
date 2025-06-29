@@ -1,0 +1,6 @@
+streamlit
+pandas
+markdown
+google-generativeai
+requests
+# Add any other packages you're using
