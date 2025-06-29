@@ -1,115 +1,117 @@
-
 🧠 PolicyPal – Real-Time Insurance Advisor
 🔗 https://policy-pal-blueprints.vercel.app/
 
 A GenAI-powered platform that revolutionizes how individuals and families discover insurance policies.
-Combines real-time web intelligence with large language models (LLMs) to deliver personalized insurance recommendations, premium cost estimations, and customer support.
 
-🌟 Overview
+Combines real-time web intelligence, LLMs (Gemini), and custom risk modeling to deliver:
+Personalized policy recommendations
+Monthly premium estimations
+Instant customer support
+
+🌟 Overview:
 PolicyPal simplifies the insurance journey using cutting-edge technologies:
-
 🔍 Real-time SERP data for live policy options
-🤖 Gemini LLM for natural language analysis and summarization
-📊 Risk scoring based on lifestyle and demographic data
-💬 AI-powered support agent for user queries
-💸 Premium Calculator to estimate monthly costs for selected policy types with GenAI-backed explanations
+🤖 Gemini LLM for natural language understanding and summarization
+📊 Risk scoring based on lifestyle and demographic inputs
+💸 Premium Calculator for monthly cost estimation
+💬 AI-powered Support Agent for real-time assistance
 
-🎯 Problem Statement
-The insurance market is saturated with complex policies, overwhelming jargon, and biased agents.
-Users need a smart, unbiased, real-time recommendation engine that finds the right policy — without manual research or financial expertise.
+🎯 Problem Statement:
+The insurance market is saturated with complex policies, overwhelming jargon, and biased agents. Users need a smart, unbiased, real-time recommendation engine that finds the right policy — without manual research or financial expertise.
 
-🧠 How It Works – Core Logic
-🔍 1. User Input Collection
-The user fills out a guided form that includes:
+🔁 How It Works – Core Logic
+🔍 Step 1: User Input Collection
+Users provide:
 Demographics: Age, gender, marital status, education, occupation, location
-Lifestyle Factors: Smoking habits, driving record, pre-existing conditions
-Financial Info: Income level
-Insurance Goals: Preferred insurance type (e.g., Term Life, Family Floater)
+Lifestyle factors: Smoking habits, driving record, health conditions
+Financials: Income
+Goal: Preferred policy type (e.g., Term Life, Family Floater)
 
-🧮 2. Risk Scoring Model
-A custom Python-based model assigns a Risk Score (0–100) based on:
-
+🧮 Step 2: Risk Scoring Model
+A custom Python model calculates a Risk Score (0–100) based on:
 Parameter	Impact on Score
 🔢 Age	Higher age → Higher risk
 💸 Income	Lower income → Higher risk
-🚬 Smoking	Smoker → +25 points
-🚗 Driving record	Poor record → +15 points
-
+🚬 Smoker	Yes → +25 points
+🚗 Driving record	Poor → +15 points
 Simplified formula:
 risk_score = base + age_factor + income_factor + smoker_penalty + driving_penalty
 
-🌐 3. Live Policy Search via Serp
-Uses the SerpAPI service to search insurance websites in real-time with a custom query built from the user's profile. Results include:
+🌐 Step 3: Live Policy Search via SerpAPI
+We generate a dynamic query from the user profile and pass it to SerpAPI, which returns:
+Live policy listings
+Benefits summary
+Provider names & URLs
+🔄 This replaces static insurance datasets with real-time intelligence.
 
-Provider name
-Benefits & key highlights
-Source URLs
-This ensures dynamic, current data instead of static datasets.
+🤖 Step 4: LLM Recommendations using Gemini
+We send both the user profile and search results to Gemini Flash or Pro, which returns:
+🧾 Underwriting summary
+🥇 Best 7 personalized policy recommendations
+💡 Suitability scores and plan highlights
+Rendered as interactive cards using Markdown + HTML in Streamlit.
 
-🤖 4. LLM Recommendation using Gemini Flash
-The Gemini model receives:
-The structured user profile
-The real-time policy search results
-It then generates:
-A clear underwriting explanation
-A ranked list of Best 7 Policy Recommendations
-Provider names, summaries, and suitability insights
-All output is rendered as responsive cards using markdown + HTML for easy reading.
+💸 Step 5: Premium Calculator (NEW)
+Users can now estimate monthly premiums in a dedicated third tab.
+Inputs:
+Insurance type
+Age
+Income
+Smoking status
+Outputs:
+₹ Estimated monthly cost
+📘 Gemini-generated explanation of pricing rationale
 
-💸 5. Premium Calculator – NEW
-A dedicated third tab lets users:
-Choose an insurance type
-Input basic info (age, income, smoking status, number of family members if applicable)
-Receive an estimated monthly premium
-View a Gemini-generated natural language explanation behind the pricing logic
-This bridges the gap between recommendation and real affordability.
-
-💬 6. GenAI Support Agent
-A smart AI assistant answers natural language queries like:
+💬 Step 6: GenAI Support Agent
+Users can ask anything like:
 "What is deductible?"
-"Which is better: Term or Whole Life?"
-Powered by Gemini, it enhances:
-User education
-Instant support
-Accessibility for first-time buyers
+"Which is better — Term Life or Whole Life?"
+The Gemini-powered chatbot simplifies insurance literacy, offering:
+
+🧠 Instant education
+✅ Support automation
+🌍 Accessibility for non-experts
 
 🔐 Tech Stack
-Category	Tech Used
-Frontend	React, Tailwind CSS (hosted on Vercel)
+Category	Technologies Used
+Frontend	React + Tailwind CSS (Vercel)
 Backend	Streamlit (Python)
-LLM	Gemini Flash
-Live Search	Serp
-Data	Pandas, dotenv, csv, re, markdown
+LLM	Gemini Flash 
+Web Search	Serp
+Data Handling	Pandas, dotenv, csv, re, markdown
 Deployment	Streamlit Cloud, Vercel
 
 🚀 Getting Started
-git clone https://github.com/karanpanchallll/Policy_Pal.git
+✅ Backend Setup
 
-✅ Backend Setup:
+Copy
+git clone https://github.com/karanpanchallll/Policy_Pal.git
 cd backend
 
-Create a .env file:
+Create .env file:
+Copy
 GEMINI_API_KEY=your_gemini_key
 SERPAPI_KEY=your_serpapi_key
 
 Install dependencies:
+Copy
 pip install -r requirements.txt
 
 Run the app:
+Copy
 streamlit run app.py
 
-✅ Frontend Setup (Landing Page)
-
-cd policy-pal-blueprints
-
+✅ Frontend Setup
+Copy
+cd frontend
 npm install
 npm run build
 
-📈 Why It’s Scalable and Unique
-🔁 Live recommendations using real-time web data
-🤖 LLM-backed personalization via Gemini
-🧠 Risk-scored suggestions for smarter insurance matching
-💸 Integrated cost estimator with premium breakdowns
-💬 GenAI assistant to support, educate, and engage users
-🔄 Swappable LLMs (GPT, Claude, Mistral can be integrated easily)
-📦 Extendable to add premium comparison tables, CRM integration, PDF download, and lead generation
+📈 Why It’s Scalable & Unique
+🔁 Live Search – policies always up-to-date
+🤖 LLM-Powered Analysis – unbiased, contextual recommendations
+🧮 Custom Risk Scoring – tailored to each user
+💸 Premium Estimator – helps assess affordability
+💬 GenAI Assistant – 24x7 customer support
+🔄 Pluggable LLMs – can swap Gemini with GPT, Claude, LLaMA
+📦 Extensible Architecture – easy to add PDF downloads, CRM handoff, WhatsApp bot, etc.
