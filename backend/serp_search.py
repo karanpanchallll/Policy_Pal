@@ -8,7 +8,11 @@ SERP_API_KEY = os.getenv("SERPAPI_KEY")
 # Function to search real-time insurance policies
 
 def get_policy_recommendations_from_serpapi(user_profile, num_results=5):
-    query = f"best insurance policy in India for {user_profile['Age']} year old {user_profile['Occupation']} {user_profile['Gender']} with income {user_profile['Income Level']}"
+    query = (
+    f"best {user_profile['Insurance Type']} insurance policy in India "
+    f"for {user_profile['Age']} year old {user_profile['Occupation']} "
+    f"{user_profile['Gender']} with income {user_profile['Income Level']}"
+)
     
     params = {
         "engine": "google",
